@@ -10,11 +10,11 @@
 
     <meta 
         name="description" 
-        content="Avenmark Code Playground - Build, test, and preview websites instantly."
+        content="Avenmark Code Playground - Write code and instantly preview websites."
     >
 
 
-    <!-- Montserrat Font -->
+    <!-- Montserrat -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,37 +51,20 @@
         >
 
 
-        <div class="brand-text">
-
-            <h1>
-                Avenmark Code Playground
-            </h1>
-
-            <p>
-                Build. Test. Create.
-            </p>
-
-        </div>
+        <h1>
+            Avenmark Code Playground
+        </h1>
 
 
     </div>
 
 
 
-    <div class="header-actions">
+    <button id="export-button">
 
+        Export
 
-        <button id="template-button">
-            Templates
-        </button>
-
-
-        <button id="export-button">
-            Export
-        </button>
-
-
-    </div>
+    </button>
 
 
 </header>
@@ -90,8 +73,9 @@
 
 
 
+
 <!-- =========================
-     APPLICATION
+     WORKSPACE
 ========================= -->
 
 
@@ -102,7 +86,7 @@
 
 
 <!-- =========================
-     PROJECT SIDEBAR
+     FILES
 ========================= -->
 
 
@@ -110,6 +94,7 @@
 
 
     <div class="sidebar-header">
+
 
         <h2>
             Project Files
@@ -125,39 +110,39 @@
 
 
 
-    <div class="file-list" id="file-list">
+    <div 
+        class="file-list"
+        id="file-list"
+    >
 
 
-        <button 
+        <button
             class="file active"
-            data-file="index.html">
-
+            data-file="index.html"
+        >
             index.html
-
         </button>
 
 
-        <button 
-            class="file"
-            data-file="style.css">
 
+        <button
+            class="file"
+            data-file="style.css"
+        >
             style.css
-
         </button>
 
 
-        <button 
+
+        <button
             class="file"
-            data-file="script.js">
-
+            data-file="script.js"
+        >
             script.js
-
         </button>
 
 
     </div>
-
-
 
 
 </aside>
@@ -168,9 +153,8 @@
 
 
 
-
 <!-- =========================
-     EDITOR
+     CODE EDITOR
 ========================= -->
 
 
@@ -210,9 +194,8 @@
 
 
 
-
 <!-- =========================
-     PREVIEW
+     LIVE PREVIEW
 ========================= -->
 
 
@@ -225,7 +208,6 @@
         <h2>
             Live Preview
         </h2>
-
 
 
         <button id="run-button">
@@ -241,7 +223,7 @@
 
     <iframe
         id="preview-frame"
-        title="Website Preview"
+        title="Live Website Preview"
     ></iframe>
 
 
@@ -253,52 +235,6 @@
 
 
 </main>
-
-
-
-
-
-
-
-<!-- =========================
-     MODALS / FUTURE FEATURES
-========================= -->
-
-
-<div 
-    id="template-modal"
-    class="hidden">
-
-
-    <div class="modal-content">
-
-
-        <h2>
-            Choose Template
-        </h2>
-
-
-        <button>
-            Blank Website
-        </button>
-
-
-        <button>
-            Portfolio Website
-        </button>
-
-
-        <button>
-            Business Landing Page
-        </button>
-
-
-    </div>
-
-
-</div>
-
-
 
 
 

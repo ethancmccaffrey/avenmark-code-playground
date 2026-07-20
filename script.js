@@ -1,62 +1,45 @@
 /* ==========================================================
-   AVENMARK CODE PLAYGROUND V2
-   SCRIPT ENGINE
+   AVENMARK CODE PLAYGROUND
+   SCRIPT ENGINE V1.1
 ========================================================== */
 
 
 /* ==========================================================
-   PROJECT FILE SYSTEM
+   PROJECT FILE STORAGE
 ========================================================== */
-
 
 const files = {
 
-
     "index.html": `
-<h1>Welcome to Avenmark Code Playground</h1>
+<h1>Hello from Avenmark Code Playground</h1>
 
 <p>
 Start building your website.
 </p>
 
-<button onclick="testFunction()">
+<button onclick="hello()">
 Click Me
 </button>
 `,
 
-
     "style.css": `
 body {
-
     font-family: Arial, sans-serif;
-
     padding: 40px;
-
 }
-
 
 h1 {
-
     color: #C47A45;
-
 }
-
 `,
 
-
     "script.js": `
-
-function testFunction(){
-
+function hello() {
     alert("JavaScript is working!");
-
 }
-
 `
 
 };
-
-
 
 
 
@@ -67,32 +50,29 @@ let currentFile = "index.html";
 
 
 /* ==========================================================
-   ELEMENTS
+   ELEMENT REFERENCES
 ========================================================== */
 
-
-const editor =
+const editor = 
     document.getElementById("code-editor");
-
 
 const fileList =
     document.getElementById("file-list");
 
-
 const currentFileTitle =
     document.getElementById("current-file");
 
+const preview =
+    document.getElementById("preview-frame");
 
 const runButton =
     document.getElementById("run-button");
 
-
 const newFileButton =
     document.getElementById("new-file-button");
 
-
-const previewFrame =
-    document.getElementById("preview-frame");
+const exportButton =
+    document.getElementById("export-button");
 
 
 
@@ -101,31 +81,21 @@ const previewFrame =
 
 
 /* ==========================================================
-   LOAD FILE
+   FILE MANAGEMENT
 ========================================================== */
 
 
-function loadFile(fileName){
+function loadFile(name) {
 
+    saveFile();
 
-    saveCurrentFile();
+    currentFile = name;
 
+    editor.value = files[name];
 
-    currentFile = fileName;
+    currentFileTitle.textContent = name;
 
-
-    editor.value =
-        files[fileName] || "";
-
-
-
-    currentFileTitle.textContent =
-        fileName;
-
-
-
-    updateActiveFile();
-
+    updateFileHighlight();
 
 }
 
@@ -133,20 +103,9 @@ function loadFile(fileName){
 
 
 
-/* ==========================================================
-   SAVE FILE
-========================================================== */
+function saveFile() {
 
-
-function saveCurrentFile(){
-
-
-    if(currentFile){
-
-        files[currentFile] =
-            editor.value;
-
-    }
+    files[currentFile] = editor.value;
 
 }
 
@@ -154,35 +113,56 @@ function saveCurrentFile(){
 
 
 
-
-/* ==========================================================
-   ACTIVE FILE STYLE
-========================================================== */
-
-
-function updateActiveFile(){
+function updateFileHighlight() {
 
 
     document
-        .querySelectorAll(".file")
-        .forEach(button => {
+    .querySelectorAll(".file")
+    .forEach(button => {
 
 
-            button.classList.remove(
-                "active"
-            );
+        button.classList.remove("active");
 
 
-            if(button.dataset.file === currentFile){
+        if(button.dataset.file === currentFile) {
 
-                button.classList.add(
-                    "active"
-                );
+            button.classList.add("active");
 
-            }
+        }
 
 
-        });
+    });
+
+
+}
+
+
+
+
+
+function createFileButton(name) {
+
+
+    const button =
+        document.createElement("button");
+
+
+    button.className = "file";
+
+
+    button.dataset.file = name;
+
+
+    button.textContent = name;
+
+
+    button.addEventListener(
+        "click",
+        () => loadFile(name)
+    );
+
+
+    fileList.appendChild(button);
 
 
 }
@@ -193,9 +173,8 @@ function updateActiveFile(){
 
 
 
-
 /* ==========================================================
-   FILE BUTTONS
+   EXISTING FILE BUTTONS
 ========================================================== */
 
 
@@ -206,13 +185,9 @@ document
 
     button.addEventListener(
         "click",
-        ()=>{
+        () => {
 
-
-            loadFile(
-                button.dataset.file
-            );
-
+            loadFile(button.dataset.file);
 
         }
     );
@@ -227,53 +202,25 @@ document
 
 
 /* ==========================================================
-   LIVE EDIT SAVING
-========================================================== */
-
-
-editor.addEventListener(
-    "input",
-    ()=>{
-
-
-        files[currentFile] =
-            editor.value;
-
-
-    }
-);
-
-
-
-
-
-
-
-/* ==========================================================
-   CREATE NEW FILE
+   NEW FILE
 ========================================================== */
 
 
 newFileButton.addEventListener(
     "click",
-    ()=>{
+    () => {
 
 
         const name =
             prompt(
-                "File name:"
+                "Enter file name:"
             );
 
 
-        if(!name){
-
-            return;
-
-        }
+        if(!name) return;
 
 
-
-        if(files[name]){
+        if(files[name]) {
 
             alert(
                 "File already exists."
@@ -287,43 +234,7 @@ newFileButton.addEventListener(
 
         files[name] = "";
 
-
-
-        const button =
-            document.createElement(
-                "button"
-            );
-
-
-        button.className =
-            "file";
-
-
-        button.dataset.file =
-            name;
-
-
-        button.textContent =
-            name;
-
-
-
-        button.addEventListener(
-            "click",
-            ()=>{
-
-                loadFile(name);
-
-            }
-        );
-
-
-
-        fileList.appendChild(
-            button
-        );
-
-
+        createFileButton(name);
 
         loadFile(name);
 
@@ -337,17 +248,15 @@ newFileButton.addEventListener(
 
 
 
-
 /* ==========================================================
-   BUILD PREVIEW
+   BUILD WEBSITE PREVIEW
 ========================================================== */
 
 
-function runProject(){
+function runProject() {
 
 
-
-    saveCurrentFile();
+    saveFile();
 
 
 
@@ -356,13 +265,9 @@ function runProject(){
 
 
 
-    let css =
-        "";
+    let styles = "";
 
-
-
-    let js =
-        "";
+    let scripts = "";
 
 
 
@@ -371,11 +276,10 @@ function runProject(){
     .forEach(file => {
 
 
+        if(file.endsWith(".css")) {
 
-        if(file.endsWith(".css")){
 
-
-            css += `
+            styles += `
 
 /* ${file} */
 
@@ -387,10 +291,10 @@ ${files[file]}
 
 
 
-        if(file.endsWith(".js")){
+        if(file.endsWith(".js")) {
 
 
-            js += `
+            scripts += `
 
 // ${file}
 
@@ -401,57 +305,44 @@ ${files[file]}
         }
 
 
-
     });
 
 
 
 
 
-
-
-    const preview = `
-
+    const output = `
 
 <!DOCTYPE html>
 
 <html>
 
-
 <head>
-
 
 <style>
 
-${css}
+${styles}
 
 </style>
-
 
 </head>
 
 
-
 <body>
-
 
 ${html}
 
 
-
 <script>
 
-${js}
+${scripts}
 
 <\/script>
 
 
-
 </body>
 
-
 </html>
-
 
 `;
 
@@ -459,12 +350,10 @@ ${js}
 
 
 
-    previewFrame.srcdoc =
-        preview;
+    preview.srcdoc = output;
 
 
 }
-
 
 
 
@@ -489,13 +378,75 @@ runButton.addEventListener(
 
 
 /* ==========================================================
-   START APPLICATION
+   EXPORT PROJECT
 ========================================================== */
 
 
-loadFile(
-    "index.html"
+exportButton.addEventListener(
+    "click",
+    () => {
+
+
+        let project = "";
+
+
+        Object.keys(files)
+        .forEach(file => {
+
+
+            project +=
+`
+====================
+${file}
+====================
+
+${files[file]}
+
+`;
+
+        });
+
+
+
+        const blob =
+            new Blob(
+                [project],
+                {
+                    type:
+                    "text/plain"
+                }
+            );
+
+
+        const link =
+            document.createElement("a");
+
+
+        link.href =
+            URL.createObjectURL(blob);
+
+
+        link.download =
+            "avenmark-project.txt";
+
+
+        link.click();
+
+
+    }
 );
 
+
+
+
+
+
+
+/* ==========================================================
+   START
+========================================================== */
+
+
+loadFile("index.html");
 
 runProject();

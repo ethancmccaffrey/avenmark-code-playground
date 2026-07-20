@@ -1,5 +1,5 @@
 /* ==========================================================
-   AVENMARK CODE PLAYGROUND V2
+   AVENMARK CODE PLAYGROUND V1.1
    STYLE SYSTEM
 ========================================================== */
 
@@ -38,15 +38,13 @@ body {
 
 
 
-
-
 /* ==========================================================
    HEADER
 ========================================================== */
 
 .app-header {
 
-    height: 82px;
+    height: 80px;
 
     display: flex;
 
@@ -56,11 +54,10 @@ body {
 
     padding: 0 28px;
 
-    background: rgba(245,245,242,0.9);
-
-    backdrop-filter: blur(14px);
+    background: #F5F5F2;
 
     border-bottom:
+
         1px solid rgba(47,47,47,0.12);
 
 }
@@ -73,7 +70,7 @@ body {
 
     align-items: center;
 
-    gap: 16px;
+    gap: 15px;
 
 }
 
@@ -81,9 +78,9 @@ body {
 
 .logo {
 
-    width: 52px;
+    width: 50px;
 
-    height: 52px;
+    height: 50px;
 
     object-fit: contain;
 
@@ -91,73 +88,50 @@ body {
 
 
 
-.brand-text h1 {
+.brand h1 {
+
+    font-family: "Montserrat", sans-serif;
 
     font-size: 22px;
 
     font-weight: 700;
 
-    letter-spacing: -0.4px;
+    color: #2F2F2F;
 
 }
 
 
 
-.brand-text p {
+#export-button {
 
-    font-size: 13px;
+    background: #C47A45;
 
-    color: #6b6b6b;
+    color: white;
 
-    margin-top: 3px;
+    border: none;
 
-}
+    border-radius: 999px;
 
-
-
-.header-actions {
-
-    display: flex;
-
-    gap: 12px;
-
-}
-
-
-
-
-.header-actions button {
+    padding: 10px 22px;
 
     font-family: inherit;
 
     font-weight: 600;
 
-    border: none;
-
     cursor: pointer;
-
-    padding: 10px 18px;
-
-    border-radius: 999px;
-
-    background: transparent;
-
-    color: #2F2F2F;
 
     transition: .25s ease;
 
 }
 
 
+#export-button:hover {
 
-.header-actions button:hover {
+    transform: translateY(-2px);
 
-    background: rgba(196,122,69,0.12);
+    opacity: .9;
 
 }
-
-
-
 
 
 
@@ -169,11 +143,11 @@ body {
 
 .workspace {
 
-    height: calc(100vh - 82px);
+    height: calc(100vh - 80px);
 
     display: grid;
 
-    grid-template-columns: 240px 1fr 1fr;
+    grid-template-columns: 230px 1fr 1fr;
 
     gap: 18px;
 
@@ -183,19 +157,17 @@ body {
 
 
 
-
-
 /* ==========================================================
-   SHARED PANELS
+   PANELS
 ========================================================== */
 
 .sidebar,
 .editor-section,
 .preview-section {
 
-    background: #FFFFFF;
+    background: white;
 
-    border-radius: 22px;
+    border-radius: 20px;
 
     border:
 
@@ -203,15 +175,11 @@ body {
 
     box-shadow:
 
-        0 12px 35px rgba(47,47,47,0.07);
+        0 10px 30px rgba(47,47,47,0.06);
 
     overflow: hidden;
 
 }
-
-
-
-
 
 
 
@@ -223,9 +191,9 @@ body {
 
     display: flex;
 
-    align-items: center;
-
     justify-content: space-between;
+
+    align-items: center;
 
     padding: 20px;
 
@@ -242,7 +210,6 @@ body {
     font-size: 16px;
 
 }
-
 
 
 
@@ -286,13 +253,13 @@ body {
 
     width: 100%;
 
-    text-align: left;
-
     padding: 12px 14px;
 
-    border-radius: 12px;
+    text-align: left;
 
     border: none;
+
+    border-radius: 12px;
 
     background: transparent;
 
@@ -330,13 +297,12 @@ body {
 
 
 
-
-
 /* ==========================================================
    EDITOR
 ========================================================== */
 
-.editor-section {
+.editor-section,
+.preview-section {
 
     display: flex;
 
@@ -349,7 +315,7 @@ body {
 .editor-header,
 .preview-header {
 
-    height: 62px;
+    height: 60px;
 
     padding: 0 22px;
 
@@ -378,9 +344,9 @@ body {
 
 .editor-header span {
 
-    color: #777;
-
     font-size: 13px;
+
+    color: #777;
 
 }
 
@@ -392,13 +358,13 @@ body {
 
     width: 100%;
 
-    resize: none;
+    padding: 22px;
 
-    border: none;
+    resize: none;
 
     outline: none;
 
-    padding: 24px;
+    border: none;
 
     background: #2F2F2F;
 
@@ -419,21 +385,9 @@ body {
 
 
 
-
-
 /* ==========================================================
    PREVIEW
 ========================================================== */
-
-.preview-section {
-
-    display: flex;
-
-    flex-direction: column;
-
-}
-
-
 
 #run-button {
 
@@ -443,9 +397,9 @@ body {
 
     border: none;
 
-    padding: 10px 22px;
-
     border-radius: 999px;
+
+    padding: 10px 24px;
 
     font-family: inherit;
 
@@ -483,78 +437,25 @@ body {
 
 
 
-
-
-/* ==========================================================
-   TEMPLATE MODAL
-========================================================== */
-
-.hidden {
-
-    display: none;
-
-}
-
-
-
-#template-modal {
-
-    position: fixed;
-
-    inset: 0;
-
-    background: rgba(47,47,47,.35);
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-}
-
-
-
-.modal-content {
-
-    background:white;
-
-    padding:40px;
-
-    border-radius:24px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:15px;
-
-}
-
-
-
-
-
-
 /* ==========================================================
    RESPONSIVE
 ========================================================== */
 
-@media(max-width:1100px){
+@media(max-width:1100px) {
 
 
     body {
 
-        overflow:auto;
+        overflow: auto;
 
     }
 
 
     .workspace {
 
-        grid-template-columns:1fr;
+        height: auto;
 
-        height:auto;
+        grid-template-columns: 1fr;
 
     }
 
@@ -563,7 +464,7 @@ body {
     .editor-section,
     .preview-section {
 
-        min-height:500px;
+        min-height: 450px;
 
     }
 
@@ -572,26 +473,35 @@ body {
 
 
 
-@media(max-width:600px){
+@media(max-width:600px) {
 
 
     .app-header {
 
-        padding:0 16px;
+        padding: 0 16px;
 
     }
 
 
-    .brand-text h1 {
+    .brand h1 {
 
-        font-size:17px;
+        font-size: 16px;
 
     }
 
 
-    .header-actions button {
+    .logo {
 
-        padding:8px 12px;
+        width: 42px;
+
+        height: 42px;
+
+    }
+
+
+    #export-button {
+
+        padding: 8px 14px;
 
     }
 

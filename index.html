@@ -2,12 +2,155 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Hello, World!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Avenmark Code Playground</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
-  <h1>Hello, World!</h1>
+
+
+<header class="app-header">
+
+    <div class="brand">
+
+        <img
+            src="Untitled design.png"
+            alt="Avenmark Logo"
+            class="logo">
+
+        <h1>
+            Avenmark Code Playground
+        </h1>
+
+    </div>
+
+</header>
+
+
+
+<main class="application">
+
+
+    <!-- LEFT SIDE -->
+
+    <section class="editor-panel">
+
+
+        <div class="panel-title">
+
+            <h2>
+                Project Files
+            </h2>
+
+            <button id="new-file-button">
+                + New File
+            </button>
+
+        </div>
+
+
+
+        <div class="file-list">
+
+
+            <button class="file active" data-file="index.html">
+                index.html
+            </button>
+
+
+            <button class="file" data-file="style.css">
+                style.css
+            </button>
+
+
+            <button class="file" data-file="script.js">
+                script.js
+            </button>
+
+
+        </div>
+
+
+
+        <div class="editor-container">
+
+
+            <div class="editor-title">
+
+                <h2 id="current-file">
+                    index.html
+                </h2>
+
+            </div>
+
+
+            <textarea
+                id="code-editor"
+                spellcheck="false">
+            </textarea>
+
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+    <!-- RIGHT SIDE -->
+
+
+    <section class="preview-panel">
+
+
+        <div class="preview-header">
+
+
+            <h2>
+                Live Preview
+            </h2>
+
+
+            <button id="run-button">
+                Run
+            </button>
+
+
+        </div>
+
+
+
+        <iframe
+            id="preview-frame"
+            title="Live Preview">
+        </iframe>
+
+
+
+    </section>
+
+
+
+</main>
+
+
+
+
+<script src="script.js"></script>
+
+
 </body>
 
 </html>
